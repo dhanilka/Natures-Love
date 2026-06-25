@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f7f4ed;
+  --foreground: #20332a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: #c7d69c;
+  color: #20332a;
+}
+
+.hero-grain {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, .07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .06) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(circle at 50% 46%, black 0 34%, transparent 72%);
+  opacity: .34;
+}
+
+.product-stage {
+  --product-w: clamp(210px, 58vw, 360px);
+}
+
+.product-image-wrap {
+  width: var(--product-w);
+  aspect-ratio: 3 / 4.8;
+  transform-origin: center;
+}
+
+.product-orbit-ring {
+  position: absolute;
+  inset: 13%;
+  border: 1px solid color-mix(in srgb, var(--hero-ink) 42%, transparent);
+  border-radius: 9999px;
+  animation: orbit-ring 18s linear infinite;
+}
+
+.product-orbit-ring::before,
+.product-orbit-ring::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  background: var(--hero-accent);
+  box-shadow: 0 0 0 8px color-mix(in srgb, var(--hero-accent) 24%, transparent);
+}
+
+.product-orbit-ring::before {
+  left: 9%;
+  top: 18%;
+}
+
+.product-orbit-ring::after {
+  bottom: 15%;
+  right: 12%;
+}
+
+.product-orbit-ring--reverse {
+  inset: 22%;
+  animation-direction: reverse;
+  animation-duration: 24s;
+  opacity: .64;
+}
+
+.ingredient-float {
+  position: absolute;
+  z-index: 30;
+  border: 1px solid color-mix(in srgb, var(--hero-ink) 30%, transparent);
+  border-radius: 9999px;
+  background: var(--hero-panel);
+  padding: .7rem 1rem;
+  color: var(--hero-ink);
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  backdrop-filter: blur(14px);
+  animation: ingredient-float 5s ease-in-out infinite;
+}
+
+.ingredient-float--delay {
+  animation-delay: -1.7s;
+}
+
+.ingredient-float--slow {
+  animation-duration: 6.4s;
+  animation-delay: -.8s;
+}
+
+@keyframes orbit-ring {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ingredient-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -14px, 0);
+  }
+}
+
+@media (min-width: 768px) {
+  .product-stage {
+    --product-w: clamp(270px, 27vw, 420px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
