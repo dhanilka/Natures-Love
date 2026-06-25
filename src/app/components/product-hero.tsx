@@ -117,6 +117,7 @@ export function ProductHero() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const activeProduct = products[activeIndex];
   const ink = readableInk(activeProduct.themeColor);
@@ -168,23 +169,37 @@ export function ProductHero() {
     setActiveIndex((current) => (current - 1 + products.length) % products.length);
   };
 
+  const selectProduct = (index: number) => {
+    if (index !== activeIndex) {
+      setActiveIndex(index);
+    }
+  };
+
   return (
     <main
       className="min-h-screen overflow-hidden text-[var(--hero-ink)] transition-colors duration-700"
       style={heroStyle}
     >
-      <section className="relative flex min-h-screen flex-col bg-[radial-gradient(circle_at_78%_16%,var(--hero-accent)_0,transparent_28%),radial-gradient(circle_at_14%_76%,rgba(255,255,255,.36)_0,transparent_26%),linear-gradient(135deg,var(--hero-theme)_0%,color-mix(in_srgb,var(--hero-theme)_78%,#25150a)_100%)] px-5 py-5 sm:px-8 lg:px-12">
+      <section className="relative flex min-h-screen flex-col bg-[radial-gradient(circle_at_78%_16%,var(--hero-accent)_0,transparent_28%),radial-gradient(circle_at_14%_76%,rgba(255,255,255,.36)_0,transparent_26%),linear-gradient(135deg,var(--hero-theme)_0%,color-mix(in_srgb,var(--hero-theme)_78%,#25150a)_100%)] px-3 py-4 sm:px-8 sm:py-5 lg:px-12">
         <div className="hero-grain" />
-        <header className="glass-navbar relative z-40 mx-auto flex w-full max-w-7xl items-center gap-3 px-4 py-3">
+        <header className="glass-navbar relative z-40 mx-auto flex w-full max-w-7xl items-center gap-2 px-3 py-2 sm:gap-3 sm:px-4 sm:py-3">
           <a
-            className="shrink-0 text-sm font-black tracking-[0.18em] sm:text-base"
+            aria-label="NaturesLove home"
+            className="flex shrink-0 items-center"
             href="#"
           >
-            NATURESLOVE
+            <Image
+              alt="NaturesLove"
+              className="h-8 w-auto object-contain sm:h-10"
+              height={242}
+              priority
+              src="/img/natureslovelogo.png"
+              width={583}
+            />
           </a>
 
           <form
-            className={`glass-expand-search ${searchOpen ? "glass-expand-search--open" : ""}`}
+            className={`glass-expand-search ml-auto md:ml-0 ${searchOpen ? "glass-expand-search--open" : ""}`}
             onSubmit={(event) => event.preventDefault()}
             role="search"
           >
@@ -192,6 +207,7 @@ export function ProductHero() {
               aria-label={searchOpen ? "Focus search" : "Open search"}
               className="grid h-9 w-9 shrink-0 place-items-center"
               onClick={() => {
+                setMobileMenuOpen(false);
                 setSearchOpen(true);
                 window.setTimeout(() => searchInputRef.current?.focus(), 0);
               }}
@@ -224,7 +240,7 @@ export function ProductHero() {
             />
           </form>
 
-          <nav className="ml-auto flex max-w-[64px] min-w-0 gap-1.5 overflow-hidden text-[10px] font-black uppercase tracking-[0.1em] md:max-w-none md:overflow-x-auto">
+          <nav className="ml-auto hidden min-w-0 gap-1.5 text-[10px] font-black uppercase tracking-[0.1em] md:flex md:overflow-x-auto">
             {primaryNav.map((item) => (
               <a className="glass-nav-link" href={item.href} key={item.label}>
                 {item.label}
@@ -252,51 +268,83 @@ export function ProductHero() {
               <circle cx="12" cy="7" r="4" />
             </svg>
           </a>
+
+          <button
+            aria-controls="mobile-navigation"
+            aria-expanded={mobileMenuOpen}
+            aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            className={`apple-menu-button md:hidden ${mobileMenuOpen ? "apple-menu-button--open" : ""}`}
+            onClick={() => {
+              setSearchOpen(false);
+              setMobileMenuOpen((open) => !open);
+            }}
+            type="button"
+          >
+            <span />
+            <span />
+          </button>
         </header>
 
+        <div
+          className={`mobile-nav-panel relative z-30 mx-auto w-full max-w-7xl md:hidden ${
+            mobileMenuOpen ? "mobile-nav-panel--open" : ""
+          }`}
+          id="mobile-navigation"
+        >
+          <nav className="mobile-nav-panel__inner" aria-label="Mobile navigation">
+            {primaryNav.map((item) => (
+              <a
+                className="mobile-nav-link"
+                href={item.href}
+                key={item.label}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {item.label}
+              </a>
+            ))}
+            <a
+              className="mobile-nav-link mobile-nav-link--account"
+              href="#account"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <span>Account</span>
+              <svg
+                aria-hidden="true"
+                className="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M20 21a8 8 0 0 0-16 0" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+            </a>
+          </nav>
+        </div>
+
         <div className="relative z-10 mx-auto grid w-full max-w-7xl flex-1 items-center gap-5 py-5 lg:grid-cols-[minmax(0,.78fr)_minmax(0,1.22fr)] lg:gap-12 lg:py-4">
-          <div className="relative z-30 order-3 max-w-xl lg:order-1">
-            <div className="mb-5 flex flex-wrap gap-2 text-[11px] font-black uppercase tracking-[0.18em]">
-              {["Dried fruit", "Seeds", "Natural snacks"].map((chip) => (
-                <span
-                  className="rounded-full border border-current/25 bg-[var(--hero-panel)] px-3 py-2 backdrop-blur"
-                  key={chip}
-                >
-                  {chip}
-                </span>
-              ))}
-            </div>
-            <p className="text-sm font-black uppercase tracking-[0.34em] opacity-80">
-              Product showcase
-            </p>
-            <h1 className="mt-4 max-w-[10ch] text-5xl font-black leading-[0.9] sm:text-7xl lg:text-8xl">
-              Nature&apos;s Love
+          <div className="relative z-30 order-3 max-w-[30rem] self-start lg:order-1 lg:mt-[55px]">
+            <h1 className="brand-title hero-brand-title text-5xl leading-[0.86] sm:text-6xl lg:text-[5.6rem]">
+              Nature&apos;s
+              <br />
+              Love
             </h1>
-            <div className="mt-7 min-h-48 rounded-[2rem] border border-current/20 bg-[var(--hero-panel)] p-5 shadow-2xl shadow-black/10 backdrop-blur-xl sm:p-6">
-              <p className="text-sm font-black uppercase tracking-[0.24em] opacity-70">
+            <div
+              className="product-detail-flow product-info-panel mt-6"
+              key={activeProduct.name}
+            >
+              <p className="detail-flow-item detail-flow-item--1 product-info-eyebrow">
                 {activeProduct.subtitle}
               </p>
-              <h2 className="mt-3 text-3xl font-black leading-tight sm:text-4xl">
+              <h2 className="detail-flow-item detail-flow-item--2 product-info-name">
                 {activeProduct.name}
               </h2>
-              <p className="mt-4 max-w-lg text-base leading-7 opacity-85">
+              <p className="detail-flow-item detail-flow-item--3 product-info-description">
                 {activeProduct.description}
               </p>
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                <a
-                  className="inline-flex h-12 items-center justify-center rounded-full bg-[var(--hero-ink)] px-6 text-sm font-black text-[var(--hero-theme)] transition hover:scale-[1.02]"
-                  href="#products"
-                >
-                  Explore collection
-                </a>
-                <button
-                  className="inline-flex h-12 items-center justify-center rounded-full border border-current/30 bg-transparent px-6 text-sm font-black transition hover:bg-white/15"
-                  onClick={nextProduct}
-                  type="button"
-                >
-                  Rotate product
-                </button>
-              </div>
             </div>
           </div>
 
@@ -324,7 +372,7 @@ export function ProductHero() {
                     aria-label={`Show ${product.name}`}
                     className="product-image-wrap absolute left-1/2 top-1/2 transition-all duration-700 ease-[cubic-bezier(.2,.8,.2,1)]"
                     key={product.name}
-                    onClick={() => setActiveIndex(index)}
+                    onClick={() => selectProduct(index)}
                     style={
                       {
                         ...position,
@@ -350,28 +398,35 @@ export function ProductHero() {
             </div>
           </div>
 
-          <div className="relative z-30 order-2 mx-auto grid w-full max-w-7xl gap-3 lg:order-3 lg:col-span-2 lg:grid-cols-[1fr_auto_1fr] lg:items-end">
-            <div className="hidden text-xs font-bold uppercase tracking-[0.18em] opacity-80 lg:block">
-              Naturally colorful pantry favorites
-            </div>
-            <div className="flex items-center justify-center gap-3">
+          <div className="relative z-30 order-2 mx-auto hidden w-full max-w-7xl justify-center md:flex lg:order-3 lg:col-span-2">
+            <div className="apple-carousel-controls">
               <button
                 aria-label="Previous product"
-                className="grid h-12 w-12 place-items-center rounded-full border border-current/30 bg-[var(--hero-panel)] text-2xl font-black backdrop-blur-md transition hover:bg-white/25"
+                className="apple-carousel-arrow"
                 onClick={previousProduct}
                 type="button"
               >
-                &lt;
+                <svg
+                  aria-hidden="true"
+                  className="h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="3"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="m15 18-6-6 6-6" />
+                </svg>
               </button>
-              <div className="flex rounded-full border border-current/25 bg-[var(--hero-panel)] p-1 backdrop-blur-md">
+              <div className="apple-carousel-dots">
                 {products.map((product, index) => (
                   <button
+                    aria-current={index === activeIndex ? "true" : undefined}
                     aria-label={`Go to ${product.name}`}
-                    className={`h-9 rounded-full px-4 text-xs font-black transition ${
-                      index === activeIndex ? "bg-[var(--hero-ink)] text-[var(--hero-theme)]" : "opacity-70 hover:opacity-100"
-                    }`}
+                    className={`apple-carousel-dot ${index === activeIndex ? "apple-carousel-dot--active" : ""}`}
                     key={product.name}
-                    onClick={() => setActiveIndex(index)}
+                    onClick={() => selectProduct(index)}
                     type="button"
                   >
                     {String(index + 1).padStart(2, "0")}
@@ -380,15 +435,23 @@ export function ProductHero() {
               </div>
               <button
                 aria-label="Next product"
-                className="grid h-12 w-12 place-items-center rounded-full border border-current/30 bg-[var(--hero-panel)] text-2xl font-black backdrop-blur-md transition hover:bg-white/25"
+                className="apple-carousel-arrow"
                 onClick={nextProduct}
                 type="button"
               >
-                &gt;
+                <svg
+                  aria-hidden="true"
+                  className="h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="3"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="m9 18 6-6-6-6" />
+                </svg>
               </button>
-            </div>
-            <div className="text-center text-xs font-bold uppercase tracking-[0.18em] opacity-80 lg:text-right">
-              Auto rotating every 4 seconds
             </div>
           </div>
         </div>
