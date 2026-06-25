@@ -27,6 +27,111 @@ html {
   color: #20332a;
 }
 
+.glass-navbar {
+  border: 1px solid color-mix(in srgb, var(--hero-ink) 18%, transparent);
+  border-radius: 9999px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, .28), rgba(255, 255, 255, .1)),
+    color-mix(in srgb, var(--hero-theme) 12%, transparent);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, .12);
+  backdrop-filter: blur(20px) saturate(140%);
+}
+
+.glass-nav-link {
+  flex: 0 0 auto;
+  border: 1px solid color-mix(in srgb, var(--hero-ink) 18%, transparent);
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, .14);
+  padding: .5rem .7rem;
+  color: var(--hero-ink);
+  text-decoration: none;
+  transition:
+    background-color .2s ease,
+    border-color .2s ease,
+    transform .2s ease;
+}
+
+.glass-nav-link:hover {
+  border-color: color-mix(in srgb, var(--hero-ink) 35%, transparent);
+  background: rgba(255, 255, 255, .32);
+  transform: translateY(-1px);
+}
+
+.glass-icon-link {
+  display: grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--hero-ink) 18%, transparent);
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, .14);
+  color: var(--hero-ink);
+  transition:
+    background-color .2s ease,
+    border-color .2s ease,
+    transform .2s ease;
+}
+
+.glass-icon-link:hover {
+  border-color: color-mix(in srgb, var(--hero-ink) 35%, transparent);
+  background: rgba(255, 255, 255, .32);
+  transform: translateY(-1px);
+}
+
+.glass-expand-search {
+  display: flex;
+  width: 2.25rem;
+  height: 2.25rem;
+  flex: 0 0 auto;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--hero-ink) 18%, transparent);
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, .14);
+  color: var(--hero-ink);
+  transition:
+    width .25s ease,
+    background-color .2s ease,
+    border-color .2s ease;
+}
+
+.glass-expand-search:hover,
+.glass-expand-search:focus-within,
+.glass-expand-search--open {
+  border-color: color-mix(in srgb, var(--hero-ink) 35%, transparent);
+  background: rgba(255, 255, 255, .32);
+}
+
+.glass-expand-search:focus-within,
+.glass-expand-search--open {
+  width: min(42vw, 12rem);
+}
+
+.glass-search-input {
+  min-width: 0;
+  width: 0;
+  flex: 1;
+  border: 0;
+  background: transparent;
+  color: var(--hero-ink);
+  font-size: .86rem;
+  font-weight: 700;
+  outline: 0;
+  opacity: 0;
+  transition: opacity .2s ease;
+}
+
+.glass-expand-search:focus-within .glass-search-input,
+.glass-expand-search--open .glass-search-input {
+  width: auto;
+  opacity: 1;
+}
+
+.glass-search-input::placeholder {
+  color: color-mix(in srgb, var(--hero-ink) 58%, transparent);
+}
+
 .hero-grain {
   pointer-events: none;
   position: absolute;
