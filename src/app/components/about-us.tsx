@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { ScrollReveal } from "./scroll-reveal";
 import { StoryTypewriter } from "./story-typewriter";
 
 const trustItems = [
@@ -50,7 +51,7 @@ export function AboutUs() {
     <section className="about-section" id="about">
       <div className="about-shell">
         <div className="about-intro">
-          <div className="about-copy">
+          <ScrollReveal className="about-copy about-intro-copy-reveal">
             <p className="about-kicker">About Us</p>
             <h2>Nature&apos;s love, carefully packed for you.</h2>
             <p>
@@ -64,7 +65,7 @@ export function AboutUs() {
               nutrition. With GMP, HACCP, and ISO 22000 certifications, we guarantee safety,
               quality, and excellence in every pack.
             </p>
-          </div>
+          </ScrollReveal>
 
           <div className="about-visual" aria-label="Nature's Love products">
             <Image
@@ -122,35 +123,47 @@ export function AboutUs() {
           <StoryTypewriter paragraphs={storyParagraphs} />
         </div>
 
-        <div className="about-mvv">
-          <div className="about-mvv-lead">
+        <div className="about-mvv" aria-label="Mission, vision and values">
+          <ScrollReveal className="about-mvv-lead about-mvv-lead-reveal">
             <p className="about-kicker">Mission, Vision & Values</p>
-            <h2>Pure food with a clear purpose.</h2>
+            <h2>
+              <span>Pure food.</span>
+              <span>Clear purpose.</span>
+            </h2>
+            <p>
+              A simple promise behind every pack: natural food, careful sourcing, and
+              quality families can trust.
+            </p>
+          </ScrollReveal>
+          <div className="about-mvv-cards">
+            <article className="about-mvv-card" tabIndex={0}>
+              <span className="about-mvv-index">01</span>
+              <h3>Our Mission</h3>
+              <p>
+                To provide pure, natural, and nutrient-rich foods that promote healthy
+                living and inspire people to choose wellness every day.
+              </p>
+            </article>
+            <article className="about-mvv-card" tabIndex={0}>
+              <span className="about-mvv-index">02</span>
+              <h3>Our Vision</h3>
+              <p>
+                To become a global symbol of trust in natural foods, enriching lives
+                through purity, sustainability, and heartfelt care.
+              </p>
+            </article>
+            <article className="about-mvv-card about-values" tabIndex={0}>
+              <span className="about-mvv-index">03</span>
+              <h3>Our Values</h3>
+              <ul>
+                {values.map(([title, copy]) => (
+                  <li key={title}>
+                    <strong>{title}:</strong> {copy}
+                  </li>
+                ))}
+              </ul>
+            </article>
           </div>
-          <article>
-            <h3>Our Mission</h3>
-            <p>
-              To provide pure, natural, and nutrient-rich foods that promote healthy living
-              and inspire people to choose wellness every day.
-            </p>
-          </article>
-          <article>
-            <h3>Our Vision</h3>
-            <p>
-              To become a global symbol of trust in natural foods, enriching lives through
-              purity, sustainability, and heartfelt care.
-            </p>
-          </article>
-          <article className="about-values">
-            <h3>Our Values</h3>
-            <ul>
-              {values.map(([title, copy]) => (
-                <li key={title}>
-                  <strong>{title}:</strong> {copy}
-                </li>
-              ))}
-            </ul>
-          </article>
         </div>
 
         <div className="about-contact" id="contact">
