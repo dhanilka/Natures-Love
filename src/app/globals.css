@@ -1003,17 +1003,41 @@ html {
 }
 
 .about-values ul {
-  margin-top: .8rem;
+  margin-top: .95rem;
 }
 
 .about-values ul {
   display: grid;
-  gap: .42rem;
-  color: rgba(41, 76, 48, .76);
-  font-size: clamp(.95rem, 1.1vw, 1.02rem);
-  line-height: 1.55;
+  gap: .52rem;
   list-style: none;
   padding: 0;
+}
+
+.about-values li {
+  display: grid;
+  gap: .18rem;
+  border-top: 1px solid rgba(58, 104, 62, .12);
+  padding-top: .52rem;
+}
+
+.about-values li:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.about-values li strong {
+  color: #173226;
+  font-size: clamp(.78rem, .95vw, .86rem);
+  font-weight: 950;
+  letter-spacing: .1em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.about-values li span {
+  color: rgba(41, 76, 48, .74);
+  font-size: clamp(.9rem, 1vw, .96rem);
+  line-height: 1.38;
 }
 
 .about-contact {
@@ -1151,32 +1175,82 @@ html {
   animation: orbit-ring 18s linear infinite;
 }
 
-.product-orbit-ring::before,
-.product-orbit-ring::after {
-  content: "";
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  border-radius: 9999px;
-  background: var(--hero-accent);
-  box-shadow: 0 0 0 8px color-mix(in srgb, var(--hero-accent) 24%, transparent);
-}
-
-.product-orbit-ring::before {
-  left: 9%;
-  top: 18%;
-}
-
-.product-orbit-ring::after {
-  bottom: 15%;
-  right: 12%;
-}
-
 .product-orbit-ring--reverse {
   inset: 22%;
   animation-direction: reverse;
   animation-duration: 24s;
   opacity: .64;
+}
+
+.product-orbit-icons {
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.product-orbit-icons--outer {
+  inset: 13%;
+  animation: orbit-ring 18s linear infinite;
+}
+
+.product-orbit-icons--inner {
+  inset: 22%;
+  animation: orbit-ring 24s linear infinite reverse;
+  opacity: .78;
+}
+
+.product-orbit-icon {
+  display: grid;
+  position: absolute;
+  width: clamp(2.05rem, 5vw, 3rem);
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--hero-ink) 20%, transparent);
+  border-radius: 9999px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, .82), rgba(255, 248, 233, .54)),
+    color-mix(in srgb, var(--hero-accent) 18%, transparent);
+  box-shadow:
+    0 0 0 7px color-mix(in srgb, var(--hero-accent) 16%, transparent),
+    0 14px 28px rgba(0, 0, 0, .12);
+  opacity: .86;
+}
+
+.product-orbit-icon img {
+  width: 58%;
+  height: 58%;
+  object-fit: contain;
+  animation: orbit-icon-counter 18s linear infinite reverse;
+}
+
+.product-orbit-icons--inner .product-orbit-icon img {
+  animation: orbit-icon-counter 24s linear infinite;
+}
+
+.product-orbit-icon--outer-1 {
+  left: 9%;
+  top: 18%;
+}
+
+.product-orbit-icon--outer-2 {
+  bottom: 15%;
+  right: 12%;
+}
+
+.product-orbit-icon--outer-3 {
+  left: 48%;
+  top: -4%;
+}
+
+.product-orbit-icon--inner-1 {
+  right: 4%;
+  top: 26%;
+}
+
+.product-orbit-icon--inner-2 {
+  bottom: 8%;
+  left: 18%;
 }
 
 .ingredient-float {
@@ -1207,6 +1281,12 @@ html {
 @keyframes orbit-ring {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit-icon-counter {
+  to {
+    transform: rotate(-360deg);
   }
 }
 

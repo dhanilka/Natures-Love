@@ -116,6 +116,9 @@ const orbitSlots = [
 ];
 
 const rotationMs = 4000;
+const firstRotationDelayMs = 2000;
+const cranberryProductIndex = products.findIndex((product) => product.name === "Dried Cranberries");
+const initialProductIndex = cranberryProductIndex >= 0 ? cranberryProductIndex : 0;
 
 function hexToRgb(hex: string) {
   const clean = hex.replace("#", "");
@@ -142,7 +145,7 @@ function productPosition(index: number, activeIndex: number) {
 }
 
 export function ProductHero() {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(initialProductIndex);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -165,11 +168,24 @@ export function ProductHero() {
       return;
     }
 
-    const interval = window.setInterval(() => {
+    const advanceProduct = () => {
       setActiveIndex((current) => (current + 1) % products.length);
-    }, rotationMs);
+    };
 
-    return () => window.clearInterval(interval);
+    let interval: number | undefined;
+
+    const timeout = window.setTimeout(() => {
+      advanceProduct();
+      interval = window.setInterval(advanceProduct, rotationMs);
+    }, firstRotationDelayMs);
+
+    return () => {
+      window.clearTimeout(timeout);
+
+      if (interval) {
+        window.clearInterval(interval);
+      }
+    };
   }, [reducedMotion]);
 
   useEffect(() => {
@@ -415,6 +431,26 @@ export function ProductHero() {
               </p>
               <div className="product-orbit-ring" />
               <div className="product-orbit-ring product-orbit-ring--reverse" />
+              <div className="product-orbit-icons product-orbit-icons--outer" aria-hidden="true">
+                {categoryLinks.slice(0, 3).map((category, index) => (
+                  <span
+                    className={`product-orbit-icon product-orbit-icon--outer-${index + 1}`}
+                    key={category.label}
+                  >
+                    <Image alt="" height={34} src={category.icon} width={34} />
+                  </span>
+                ))}
+              </div>
+              <div className="product-orbit-icons product-orbit-icons--inner" aria-hidden="true">
+                {categoryLinks.slice(3).map((category, index) => (
+                  <span
+                    className={`product-orbit-icon product-orbit-icon--inner-${index + 1}`}
+                    key={category.label}
+                  >
+                    <Image alt="" height={30} src={category.icon} width={30} />
+                  </span>
+                ))}
+              </div>
               <div className="ingredient-float left-[8%] top-[18%]">{activeProduct.ingredientLabel}</div>
               <div className="ingredient-float ingredient-float--delay right-[4%] top-[30%]">
                 Pure bite

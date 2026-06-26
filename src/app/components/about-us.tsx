@@ -158,7 +158,8 @@ export function AboutUs() {
               <ul>
                 {values.map(([title, copy]) => (
                   <li key={title}>
-                    <strong>{title}:</strong> {copy}
+                    <strong>{title}</strong>
+                    <span>{copy}</span>
                   </li>
                 ))}
               </ul>
