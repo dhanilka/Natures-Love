@@ -87,9 +87,16 @@ export function BlogSection() {
         </div>
 
         <div className="blog-review-panel" aria-label="Customer reviews">
-          <div>
+          <div className="blog-review-heading">
             <p className="about-kicker">Customer Reviews</p>
-            <h3>Real pantry habits from people who keep coming back.</h3>
+            <h3>
+              <span>Real pantry habits.</span>
+              <span>Genuine repeat love.</span>
+            </h3>
+            <p>
+              Short notes from customers using Nature&apos;s Love in breakfast bowls,
+              lunch boxes, and daily snack routines.
+            </p>
           </div>
           <div className="blog-review-grid">
             {reviewCards.map((review) => (
