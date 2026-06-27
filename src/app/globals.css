@@ -1040,73 +1040,393 @@ html {
   line-height: 1.38;
 }
 
+.blog-section {
+  margin-top: clamp(3rem, 7vw, 6rem);
+  scroll-margin-top: 1rem;
+}
+
+.blog-shell {
+  display: grid;
+  gap: clamp(1.4rem, 3vw, 2.4rem);
+  border: 1px solid rgba(58, 104, 62, .14);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 88% 8%, rgba(238, 185, 73, .18), transparent 30%),
+    radial-gradient(circle at 12% 18%, rgba(184, 214, 108, .22), transparent 34%),
+    linear-gradient(145deg, rgba(255, 252, 243, .96), rgba(239, 248, 220, .78));
+  box-shadow: 0 24px 70px rgba(42, 93, 49, .08);
+  padding: clamp(1.2rem, 3vw, 2rem);
+}
+
+.blog-hero {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.blog-copy {
+  max-width: 48rem;
+}
+
+.blog-copy h2 {
+  margin-top: .7rem;
+  color: #173226;
+  font-size: clamp(2.2rem, 5vw, 4.6rem);
+  font-weight: 950;
+  line-height: .96;
+}
+
+.blog-copy p:last-child {
+  margin-top: 1rem;
+  color: rgba(41, 76, 48, .76);
+  font-size: clamp(1rem, 1.35vw, 1.12rem);
+  line-height: 1.7;
+}
+
+.blog-trust-card {
+  display: grid;
+  min-height: 13rem;
+  align-content: space-between;
+  gap: 1.6rem;
+  border: 1px solid rgba(58, 104, 62, .14);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 84% 8%, rgba(255, 255, 255, .54), transparent 28%),
+    radial-gradient(circle at 8% 92%, rgba(184, 214, 108, .12), transparent 34%),
+    linear-gradient(135deg, #173f2e, #0f2f24);
+  box-shadow: 0 18px 42px rgba(15, 47, 36, .14);
+  color: #fff8e9;
+  overflow: hidden;
+  padding: clamp(1.2rem, 2.8vw, 1.85rem);
+}
+
+.blog-trust-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .9rem;
+  border-bottom: 1px solid rgba(255, 248, 233, .14);
+  padding-bottom: .9rem;
+}
+
+.blog-trust-label span {
+  color: rgba(255, 248, 233, .62);
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.blog-trust-label small {
+  color: rgba(255, 248, 233, .5);
+  font-size: .72rem;
+  font-weight: 800;
+  text-align: right;
+}
+
+.blog-trust-number {
+  display: grid;
+  gap: .75rem;
+}
+
+.blog-trust-number strong {
+  color: #fff8e9;
+  font-size: clamp(3.2rem, 6.4vw, 4.65rem);
+  font-weight: 950;
+  letter-spacing: 0;
+  line-height: .82;
+}
+
+.blog-trust-number p {
+  max-width: 24rem;
+  color: rgba(255, 248, 233, .72);
+  font-size: clamp(.98rem, 1.2vw, 1.08rem);
+  line-height: 1.48;
+}
+
+.blog-product-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.blog-product-card {
+  display: grid;
+  gap: 1rem;
+  border: 1px solid rgba(58, 104, 62, .12);
+  border-radius: 8px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, .86), rgba(255, 249, 239, .64)),
+    radial-gradient(circle at 10% 0%, rgba(184, 214, 108, .16), transparent 38%);
+  overflow: hidden;
+  padding: .85rem;
+  transition:
+    border-color .22s ease,
+    box-shadow .22s ease,
+    transform .22s ease;
+}
+
+.blog-product-card:hover {
+  border-color: rgba(58, 104, 62, .26);
+  box-shadow: 0 22px 50px rgba(42, 93, 49, .12);
+  transform: translateY(-4px);
+}
+
+.blog-product-image {
+  position: relative;
+  min-height: 16rem;
+  border-radius: 7px;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255, 255, 255, .78), transparent 32%),
+    linear-gradient(145deg, rgba(221, 238, 196, .72), rgba(255, 248, 233, .54));
+  overflow: hidden;
+}
+
+.blog-product-image img {
+  object-fit: contain;
+  padding: 1rem;
+  filter: drop-shadow(0 20px 22px rgba(0, 0, 0, .18));
+  transition: transform .28s cubic-bezier(.2, .8, .2, 1);
+}
+
+.blog-product-card:hover .blog-product-image img {
+  transform: scale(1.045) rotate(-1deg);
+}
+
+.blog-product-card h3,
+.blog-review-panel h3 {
+  margin: 0;
+  color: #173226;
+  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+  font-weight: 950;
+  line-height: 1.05;
+}
+
+.blog-product-card p,
+.blog-product-card dd {
+  color: rgba(41, 76, 48, .76);
+  line-height: 1.62;
+}
+
+.blog-product-card p {
+  margin-top: .7rem;
+}
+
+.blog-product-card dl {
+  margin-top: 1rem;
+  border-top: 1px solid rgba(58, 104, 62, .12);
+  padding-top: .85rem;
+}
+
+.blog-product-card dt {
+  color: #315f35;
+  font-size: .72rem;
+  font-weight: 950;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.blog-product-card dd {
+  margin: .35rem 0 0;
+}
+
+.blog-review-panel {
+  display: grid;
+  gap: 1.1rem;
+  border-top: 1px solid rgba(58, 104, 62, .16);
+  padding-top: clamp(1.2rem, 3vw, 2rem);
+}
+
+.blog-review-grid {
+  display: grid;
+  gap: .9rem;
+}
+
+.blog-review-card {
+  border: 1px solid rgba(58, 104, 62, .12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .68);
+  padding: 1rem;
+}
+
+.blog-stars {
+  color: #cc9b28;
+  font-size: .85rem;
+  letter-spacing: .08em;
+}
+
+.blog-review-card p {
+  margin-top: .7rem;
+  color: rgba(41, 76, 48, .78);
+  line-height: 1.6;
+}
+
+.blog-review-card strong {
+  display: block;
+  margin-top: .8rem;
+  color: #173226;
+  font-weight: 950;
+}
+
 .about-contact {
   display: grid;
-  gap: 1.25rem;
+  gap: clamp(1.5rem, 3vw, 2.4rem);
   border-radius: 8px;
-  background: #173226;
-  box-shadow: 0 24px 70px rgba(15, 47, 36, .18);
+  background:
+    radial-gradient(circle at 8% 12%, rgba(184, 214, 108, .14), transparent 32%),
+    linear-gradient(135deg, #173f2e, #102f24);
+  box-shadow: 0 24px 70px rgba(15, 47, 36, .16);
   color: #fff8e9;
-  padding: clamp(1.25rem, 4vw, 2rem);
+  padding: clamp(1.5rem, 4vw, 3rem);
 }
 
 .about-contact .about-kicker,
 .about-contact h2,
 .about-contact a,
-.about-contact span {
+.about-contact span,
+.about-contact strong,
+.about-contact small {
   color: #fff8e9;
+}
+
+.about-contact-heading {
+  max-width: 34rem;
+}
+
+.about-contact-heading h2 {
+  margin-top: .55rem;
+  font-size: clamp(2.4rem, 5vw, 4.8rem);
+  line-height: .92;
+}
+
+.about-contact-heading p:last-child {
+  margin-top: 1rem;
+  color: rgba(255, 248, 233, .72);
+  font-size: clamp(.98rem, 1.25vw, 1.08rem);
+  line-height: 1.65;
 }
 
 .about-contact-grid {
   display: grid;
-  gap: .75rem;
+  gap: .8rem;
 }
 
-.about-contact-grid a,
-.about-contact-grid span {
-  border-top: 1px solid rgba(255, 255, 255, .16);
-  font-weight: 800;
-  padding-top: .75rem;
+.about-contact-card {
+  display: grid;
+  gap: .3rem;
+  min-width: 0;
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .055);
+  padding: 1rem;
   text-decoration: none;
+  transition:
+    background-color .22s ease,
+    border-color .22s ease,
+    transform .22s ease;
+}
+
+.about-contact-card:hover,
+.about-contact-card:focus-visible {
+  border-color: rgba(255, 248, 233, .3);
+  background: rgba(255, 255, 255, .09);
+  transform: translateY(-2px);
+}
+
+.about-contact-card span {
+  color: rgba(255, 248, 233, .58);
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.about-contact-card strong {
+  overflow-wrap: anywhere;
+  font-size: clamp(.98rem, 1.3vw, 1.12rem);
+  font-weight: 900;
+  line-height: 1.35;
+}
+
+.about-contact-card--email strong {
+  overflow: visible;
+  align-self: center;
+  font-size: clamp(.62rem, 2.85vw, .9rem);
+  line-height: 1.25;
+  letter-spacing: -.01em;
+  text-overflow: clip;
+  white-space: nowrap;
+}
+
+.about-contact-card small {
+  color: rgba(255, 248, 233, .68);
+  font-size: .9rem;
+  font-weight: 800;
 }
 
 .about-footer {
   display: grid;
-  gap: 1.5rem;
-  margin-top: 2rem;
-  border-radius: 8px 8px 0 0;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  margin-top: 1rem;
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 8px;
   background:
-    radial-gradient(circle at 12% 0%, rgba(184, 214, 108, .16), transparent 34%),
-    linear-gradient(135deg, #173f2e, #0f2f24);
+    radial-gradient(circle at 12% 0%, rgba(184, 214, 108, .14), transparent 34%),
+    linear-gradient(135deg, #143b2d, #0d2b20);
   color: rgba(255, 248, 233, .72);
-  padding: clamp(1.4rem, 3vw, 2rem);
+  padding: clamp(1.4rem, 3vw, 2.4rem);
+}
+
+.about-footer-brand {
+  max-width: 28rem;
 }
 
 .about-footer-logo {
-  width: 9rem;
+  width: clamp(7rem, 12vw, 9rem);
   height: auto;
   filter: drop-shadow(0 10px 18px rgba(0, 0, 0, .16));
 }
 
 .about-footer p {
+  margin: .8rem 0 0;
   color: rgba(255, 248, 233, .7);
 }
 
+.about-footer-links {
+  display: grid;
+  gap: 1.25rem;
+}
+
 .about-footer nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .75rem 1.25rem;
+  display: grid;
+  align-content: start;
+  gap: .55rem;
+}
+
+.about-footer nav span {
+  color: rgba(255, 248, 233, .48);
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .14em;
+  text-transform: uppercase;
 }
 
 .about-footer a {
   color: #fff8e9;
-  font-weight: 800;
+  font-weight: 850;
   text-decoration: none;
+  transition: color .2s ease;
+}
+
+.about-footer a:hover,
+.about-footer a:focus-visible {
+  color: #cfe89b;
 }
 
 .about-copyright {
   border-top: 1px solid rgba(255, 255, 255, .14);
+  margin: 0;
   padding-top: 1rem;
+  color: rgba(255, 248, 233, .58);
+  font-size: .9rem;
 }
 
 @media (min-width: 900px) {
@@ -1151,13 +1471,47 @@ html {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .blog-hero {
+    align-items: stretch;
+    grid-template-columns: minmax(0, 1.25fr) minmax(18rem, .55fr);
+  }
+
+  .blog-product-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .blog-product-card {
+    align-content: start;
+  }
+
+  .blog-review-panel {
+    grid-template-columns: minmax(17rem, .55fr) minmax(0, 1.45fr);
+  }
+
+  .blog-review-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .about-contact {
     align-items: center;
-    grid-template-columns: minmax(0, .8fr) minmax(20rem, 1fr);
+    grid-template-columns: minmax(18rem, .72fr) minmax(0, 1.28fr);
   }
 
   .about-contact-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .about-footer {
+    align-items: start;
+    grid-template-columns: minmax(18rem, .85fr) minmax(0, 1.15fr);
+  }
+
+  .about-footer-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .about-copyright {
+    grid-column: 1 / -1;
   }
 }
 

@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { BlogSection } from "./blog-section";
 import { ScrollReveal } from "./scroll-reveal";
 import { StoryTypewriter } from "./story-typewriter";
 
@@ -167,20 +168,36 @@ export function AboutUs() {
           </div>
         </div>
 
+        <BlogSection />
+
         <div className="about-contact" id="contact">
-          <div>
+          <div className="about-contact-heading">
             <p className="about-kicker">Have a question?</p>
-            <h2>Contact us here.</h2>
+            <h2>Let&apos;s talk.</h2>
+            <p>Reach the Nature&apos;s Love team for orders, product support, or shop help.</p>
           </div>
           <div className="about-contact-grid">
-            <a href="https://wa.me/+94717663766">+94 71 766 3766</a>
-            <span>Monday - Friday, 9:00am - 5:00pm</span>
-            <a href="mailto:contactus@natureslove.lk">contactus@natureslove.lk</a>
+            <a className="about-contact-card" href="https://wa.me/+94717663766">
+              <span>Call / WhatsApp</span>
+              <strong>+94 71 766 3766</strong>
+            </a>
+            <div className="about-contact-card">
+              <span>Opening Hours</span>
+              <strong>Mon - Fri</strong>
+              <small>9:00am - 5:00pm</small>
+            </div>
+            <a
+              className="about-contact-card about-contact-card--email"
+              href="mailto:contactus@natureslove.lk"
+            >
+              <span>Email</span>
+              <strong>contactus@natureslove.lk</strong>
+            </a>
           </div>
         </div>
 
         <footer className="about-footer">
-          <div>
+          <div className="about-footer-brand">
             <Image
               alt="Nature's Love"
               className="about-footer-logo"
@@ -190,20 +207,24 @@ export function AboutUs() {
             />
             <p>Pay safely and securely with Nature&apos;s Love.</p>
           </div>
-          <nav aria-label="Footer navigation">
-            {footerLinks.map(([label, href]) => (
-              <a href={href} key={label}>
-                {label}
-              </a>
-            ))}
-          </nav>
-          <nav aria-label="Social links">
-            {socialLinks.map(([label, href]) => (
-              <a href={href} key={label}>
-                {label}
-              </a>
-            ))}
-          </nav>
+          <div className="about-footer-links">
+            <nav aria-label="Footer navigation">
+              <span>Explore</span>
+              {footerLinks.map(([label, href]) => (
+                <a href={href} key={label}>
+                  {label}
+                </a>
+              ))}
+            </nav>
+            <nav aria-label="Social links">
+              <span>Social</span>
+              {socialLinks.map(([label, href]) => (
+                <a href={href} key={label}>
+                  {label}
+                </a>
+              ))}
+            </nav>
+          </div>
           <p className="about-copyright">
             Copyright © 2026 Nature&apos;s Love. Design & Develop by{" "}
             <a href="https://zentrode.com/">Zentrode</a>.
