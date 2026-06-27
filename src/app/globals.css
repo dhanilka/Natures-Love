@@ -1709,6 +1709,19 @@ html {
 }
 
 @media (max-width: 640px) {
+  .about-contact-card--email {
+    justify-items: center;
+    text-align: center;
+  }
+
+  .about-contact-card--email strong {
+    max-width: 100%;
+    font-size: clamp(.7rem, 2.85vw, .82rem);
+    letter-spacing: -.025em;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
   .glass-icon-link,
   .glass-expand-search,
   .apple-menu-button {
