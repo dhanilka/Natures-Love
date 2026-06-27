@@ -584,7 +584,7 @@ canvas {
   z-index: 1;
   width: min(calc(100% - (var(--site-gutter) * 2)), var(--content-max));
   margin: 0 auto;
-  padding: clamp(2rem, 3.5vw, 3rem) 0;
+  padding: clamp(1rem, 2.2vw, 2rem) 0 clamp(2rem, 3.5vw, 3rem);
 }
 
 .featured-products-action {
@@ -1755,7 +1755,8 @@ canvas {
 
 @media (min-width: 900px) {
   .product-hero-section {
-    min-height: clamp(700px, 100svh, 940px);
+    min-height: max(700px, 100svh);
+    padding-bottom: .25rem;
   }
 
   .hero-layout {
@@ -1814,6 +1815,14 @@ canvas {
     --product-w: clamp(270px, 25vw, 450px);
     width: clamp(36rem, 50vw, 54rem);
     height: clamp(34rem, 46vw, 50rem);
+  }
+
+  .featured-products {
+    margin-top: -1px;
+  }
+
+  .featured-products-shell {
+    padding-top: clamp(.45rem, 1vw, .9rem);
   }
 
   .about-intro {
